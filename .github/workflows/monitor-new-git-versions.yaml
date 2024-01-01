@@ -17,5 +17,5 @@ jobs:
           prefix: "[Git]"
           character-limit: 255
           dry-run: true
-          max-age: 120d
+          max-age: 30d
           labels: github/release,repo/quic-go/quic-go,automated-issue
