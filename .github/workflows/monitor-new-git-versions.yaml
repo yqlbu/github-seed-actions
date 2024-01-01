@@ -3,8 +3,8 @@ name: Monitor new upstream git release versions
 on:
   workflow_dispatch:
   schedule:
-   # Run this Action every day at 4:00pm UTC
-   - cron: "0 16 * * *"
+    # Run this Action every day at 4:00pm UTC
+    - cron: "0 16 * * *"
 
 env:
   CHARACTER_LIMIT: 1000
