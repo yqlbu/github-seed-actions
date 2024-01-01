@@ -9,13 +9,22 @@ on:
 jobs:
   monitor-git-release:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    strategy:
+      matrix:
+        include:
+          - project: quic-go
+            labels: quic-go/quic-go
+            feed: https://github.com/quic-go/quic-go/releases.atom
+      fail-fast: false
     steps:
       - uses: git-for-windows/rss-to-issues@v0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          feed: https://github.com/quic-go/quic-go/releases.atom
-          prefix: "[Git]"
+          feed: ${{ matrix.feed }}
+          prefix: "[New ${{ matrix.project }} version]"
           character-limit: 255
-          dry-run: true
+          dry-run: false
           max-age: 30d
-          labels: github/release,repo/quic-go/quic-go,automated-issue
+          labels: github/release,automated-issue,${{ matrix.labels }}
